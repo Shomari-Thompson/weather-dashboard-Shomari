@@ -3,6 +3,7 @@
 import tkinter as tk
 from tkinter import messagebox
 from api_handler import fetch_weather
+
 from file_manager import save_weather_to_csv, read_weather_history
 
 def run_gui():
@@ -16,6 +17,10 @@ def run_gui():
             history_text.insert(tk.END, f"{row[0]} - {row[1]}: {row[2]}°F, {row[3]}\n")
 
     # Function to get the weather and save/display it
+from file_manager import save_weather_to_csv
+
+def run_gui():
+
     def get_weather():
         city = city_entry.get()
         data = fetch_weather(city)
@@ -23,12 +28,11 @@ def run_gui():
             temp = data["main"]["temp"]
             description = data["weather"][0]["description"]
             result_label.config(text=f"{city}: {temp}°F, {description}")
-            save_weather_to_csv(city, data)  # Save to CSV
-            update_history_display()         # Update history display
+            save_weather_to_csv(city, data)
         else:
             messagebox.showerror("Error", "Could not fetch weather data.")
 
-    # GUI Setup
+    #Gui Setup
     root = tk.Tk()
     root.title("Weather Dashboard")
 
@@ -39,6 +43,7 @@ def run_gui():
     tk.Button(root, text="Get Weather", command=get_weather).pack()
     result_label = tk.Label(root, text="")
     result_label.pack()
+
 
     # History Frame + Scrollbar + Text Box
     history_frame = tk.Frame(root)
@@ -54,5 +59,6 @@ def run_gui():
 
     # Show history when app starts
     update_history_display()
+
 
     root.mainloop()

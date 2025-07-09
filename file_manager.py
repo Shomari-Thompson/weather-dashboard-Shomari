@@ -15,6 +15,7 @@ def save_weather_to_csv(city, weather_data, file_path="data/weather_data.csv"):
             ])
         print(f"[INFO] Saved weather data for {city}")
     except Exception as e:
+
         print(f"[ERROR] Saving data failed: {e}")
 
 # Weather History search 
@@ -30,3 +31,5 @@ def read_weather_history(file_path="data/weather_data.csv", limit=7):
         return []
         
             
+
+        print(f"[ERROR] Saving data failed: {e}")
