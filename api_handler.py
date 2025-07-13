@@ -1,4 +1,4 @@
-# api_handler.p
+# api_handler.py
 
 import requests
 from config import API_KEY, BASE_URL
