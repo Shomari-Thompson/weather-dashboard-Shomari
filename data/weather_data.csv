@@ -88,3 +88,12 @@ Timestamp,City,Temperature (F),Description
 2025-07-12 20:19:03,London,63.52,broken clouds
 2025-07-12 20:19:07,Tokyo,79.86,broken clouds
 2025-07-12 20:19:09,Miami,83.88,broken clouds
+2025-07-12 21:37:39,London,61.93,few clouds
+2025-07-12 21:37:47,Miami,83.17,broken clouds
+2025-07-12 21:37:48,Paris,66.76,clear sky
+2025-07-12 21:37:57,Nigeria,67.06,overcast clouds
+2025-07-12 23:18:23,Nigeria,67.12,overcast clouds
+2025-07-12 23:19:11,Nigeria,67.12,overcast clouds
+2025-07-12 23:19:50,Paris,62.8,clear sky
+2025-07-12 23:20:01,Manhattan,74.41,overcast clouds
+2025-07-12 23:24:38,Manhattan,74.32,overcast clouds
