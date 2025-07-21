@@ -115,3 +115,15 @@ Timestamp,City,Temperature (F),Description
 2025-07-20 21:49:41,London,59.86,broken clouds
 2025-07-20 21:50:03,paris,64.02,broken clouds
 2025-07-20 21:50:55,New York,83.3,clear sky
+2025-07-21 19:33:56,Jordan,72.75,clear sky
+2025-07-21 19:34:05,pompeii,71.73,clear sky
+2025-07-21 19:35:19,Miami,87.17,scattered clouds
+2025-07-21 19:35:21,Tokyo,88.45,broken clouds
+2025-07-21 19:35:22,London,62.26,broken clouds
+2025-07-21 19:35:25,New York,82.47,overcast clouds
+2025-07-21 19:35:33,Maine,61.18,scattered clouds
+2025-07-21 19:35:43,vermont,61.7,clear sky
+2025-07-21 19:35:57,rhode island,73.8,clear sky
+2025-07-21 19:36:14,Delaware,79.05,broken clouds
+2025-07-21 19:36:23,Florida,87.04,scattered clouds
+2025-07-21 19:36:33,Miami,86.83,scattered clouds
