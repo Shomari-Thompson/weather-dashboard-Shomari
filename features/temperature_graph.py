@@ -6,7 +6,7 @@ import random
 
 def plot_temperature_history():
     try:
-        df = pd.read_csv("data/weather_data.csv", names=["timestamp", "city", "temperature", "description"], skiprows=1)
+        df = pd.read_csv("data/weather_data.csv", names=["timestamp", "city", "temperature","humidity", "description"], skiprows=1)
         df["timestamp"] = pd.to_datetime(df["timestamp"])
         df = df.sort_values("timestamp")
 

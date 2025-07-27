@@ -3,6 +3,7 @@ from tkinter import messagebox
 from api_handler import fetch_weather
 from file_manager import save_weather_to_csv, read_weather_history
 from features.temperature_graph import plot_temperature_history
+from file_manager import clear_weather_history
 
 def run_gui():
     # Function to update the weather history
@@ -17,9 +18,10 @@ def run_gui():
         city = city_entry.get()
         data = fetch_weather(city)
         if data:
+            humidity = data["main"]["humidity"]
             temp = data["main"]["temp"]
             description = data["weather"][0]["description"]
-            result_label.config(text=f"{city}: {temp}°F, {description}")
+            result_label.config(text=f"{city}: {temp}°F,{humidity}% humidity {description}")
             save_weather_to_csv(city, data)
             update_history_display()
         else:
@@ -43,6 +45,7 @@ def run_gui():
     # Buttons
     tk.Button(root, text="Get Weather", command=get_weather).pack(pady=5)
     tk.Button(root, text="Show Temperature Graph", command=plot_temperature_history).pack(pady=5)
+    tk.Button(root, text="Clear History", command=lambda: [clear_weather_history(), update_history_display()]).pack(pady=5)
 
     # Favorite cities section
     favorites_frame = tk.Frame(root)

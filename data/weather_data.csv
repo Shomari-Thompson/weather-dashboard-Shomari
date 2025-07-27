@@ -127,3 +127,17 @@ Timestamp,City,Temperature (F),Description
 2025-07-21 19:36:14,Delaware,79.05,broken clouds
 2025-07-21 19:36:23,Florida,87.04,scattered clouds
 2025-07-21 19:36:33,Miami,86.83,scattered clouds
+2025-07-21 19:43:57,Maine ,61.18,scattered clouds
+2025-07-21 19:46:04,Maine,61.18,scattered clouds
+2025-07-21 19:51:13,jordan,72.7,clear sky
+2025-07-21 19:51:25,elizabeth,82.29,scattered clouds
+2025-07-21 19:51:37,Patterson,85.71,clear sky
+2025-07-21 19:51:45,New Jersey,80.02,clear sky
+2025-07-21 19:51:57,Jersey City,82.26,scattered clouds
+2025-07-21 19:52:04,Manhattan,81.82,overcast clouds
+2025-07-21 19:52:38,Hoboken,82.13,overcast clouds
+2025-07-26 21:55:51,London,62.69,overcast clouds
+2025-07-26 21:55:56,New York,75.52,haze
+2025-07-26 21:55:59,Paris,64.99,mist
+2025-07-26 21:56:01,Tokyo,91.17,broken clouds
+2025-07-26 21:56:14,Brooklyn,75.31,haze

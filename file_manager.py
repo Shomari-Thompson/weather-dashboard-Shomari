@@ -11,6 +11,7 @@ def save_weather_to_csv(city, weather_data, file_path="data/weather_data.csv"):
                 datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 city,
                 weather_data.get("main",{}).get("temp"),
+                weather_data.get("main", {}).get("humidity"),
                 weather_data.get("weather", [{}])[0].get("description")
             ])
         print(f"[INFO] Saved weather data for {city}")
@@ -33,3 +34,11 @@ def read_weather_history(file_path="data/weather_data.csv", limit=7):
             
 
         print(f"[ERROR] Saving data failed: {e}")
+# Clear history button
+def clear_weather_history(file_path="data/weather_data.csv"):
+    try:
+        with open(file_path, "w") as file:
+            file.write("")
+        print("[INFO] Weather history cleared.")
+    except Exception as e:
+        print(f"[Error] Could not clear history: {e}")
