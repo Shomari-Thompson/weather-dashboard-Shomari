@@ -1,12 +1,22 @@
 # file_manager.py
 
+import os
 import csv
 from datetime import datetime
 
 def save_weather_to_csv(city, weather_data, file_path="data/weather_data.csv"):
     try:
-        with open(file_path, mode= 'a', newline='') as file:
+        # Check if file already exists
+        file_exists = os.path.isfile(file_path)
+
+        with open(file_path, mode='a', newline='') as file:
             writer = csv.writer(file)
+            
+            # Write header if file is new
+            if not file_exists:
+                writer.writerow(["Timestamp", "City", "Temperature (F)", "Humidity", "Description"])
+            
+            # Write actual weather row
             writer.writerow([
                 datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
                 city,
@@ -16,7 +26,6 @@ def save_weather_to_csv(city, weather_data, file_path="data/weather_data.csv"):
             ])
         print(f"[INFO] Saved weather data for {city}")
     except Exception as e:
-
         print(f"[ERROR] Saving data failed: {e}")
 
 # Weather History search 
