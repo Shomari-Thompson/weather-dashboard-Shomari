@@ -6,14 +6,11 @@ from features.temperature_graph import plot_temperature_history
 from file_manager import clear_weather_history
 import threading
 
-
 class WeatherDashboard:
 
     def plot_temperature_with_description(self):
         try:
-            from features.temperature_graph import plot_temperature_history
             plot_temperature_history()
-
             description = [
                 "Temperatures have been steadily rising over the past few days.",
                 "Notice the dip during the midweek - possibly due to a cold front.",
@@ -36,11 +33,9 @@ class WeatherDashboard:
 
         self.city = tk.StringVar()
         self.favorite_city = tk.StringVar()
-
         self.build_layout()
 
     def build_layout(self):
-        # Frames
         top_frame = ttk.Frame(self.root, padding=10)
         top_frame.grid(row=0, column=0, columnspan=2, sticky="ew")
 
@@ -53,28 +48,24 @@ class WeatherDashboard:
         self.root.grid_rowconfigure(1, weight=1)
         self.root.grid_columnconfigure(1, weight=1)
 
-        # Top input area
         ttk.Label(top_frame, text="Enter a city:").pack(side="left")
         ttk.Entry(top_frame, textvariable=self.city, width=25).pack(side="left", padx=5)
         ttk.Button(top_frame, text="Get Weather", command=self.get_weather_in_background).pack(side="left", padx=5)
         ttk.Button(top_frame, text="Show Temperature Graph", command=self.plot_temperature_with_description).pack(side="left", padx=5)
         ttk.Button(top_frame, text="Clear History", command=lambda: [clear_weather_history(), self.update_history_display()]).pack(pady=5)
+        ttk.Button(top_frame, text="Compare Cities", command=self.show_compare_cities).pack(side="left", padx=5)
 
-        # Favorite city input
         ttk.Label(self.sidebar_frame, text="Add Favorite City:").pack(pady=(10, 0))
         ttk.Entry(self.sidebar_frame, textvariable=self.favorite_city, width=20).pack(pady=2)
         ttk.Button(self.sidebar_frame, text="Add", command=self.add_favorite_city).pack(pady=2)
 
-        # Add default favorites
         default_favorites = ["New York", "London", "Tokyo", "Miami", "Paris"]
         for city in default_favorites:
             self._create_favorite_button(city)
 
-        # Result label
         self.result_label = ttk.Label(main_frame, text="", font=("Arial", 12))
         self.result_label.pack(pady=10)
 
-        # Table
         self.tree = ttk.Treeview(main_frame, columns=("Time", "City", "Temp", "Humidity", "Condition"), show="headings", height=8)
         for col in self.tree["columns"]:
             self.tree.heading(col, text=col)
@@ -91,13 +82,10 @@ class WeatherDashboard:
         if not city:
             messagebox.showwarning("Input Error", "Please enter a valid city name.")
             return
-
-        # Prevent duplicates
         for child in self.sidebar_frame.winfo_children():
             if isinstance(child, ttk.Button) and child.cget("text").lower() == city.lower():
                 messagebox.showinfo("Duplicate", f"'{city}' is already in your favorites.")
                 return
-
         self._create_favorite_button(city)
         self.favorite_city.set("")
 
@@ -106,7 +94,6 @@ class WeatherDashboard:
         if not city:
             messagebox.showerror("Input Error", "Please enter a city name.")
             return
-
         data = fetch_weather(city)
         if data:
             temp = data["main"]["temp"]
@@ -134,7 +121,25 @@ class WeatherDashboard:
             except IndexError:
                 continue
 
-                
+    def show_compare_cities(self):
+        from features.compare_cities import get_city_comparison
+        results = get_city_comparison()
+
+        if not results:
+            messagebox.showinfo("Compare Cities", "No data found to compare.")
+            return
+
+        top = tk.Toplevel(self.root)
+        top.title("Compare Cities – Comfort Comparison")
+
+        tree = ttk.Treeview(top, columns=("City", "Temp", "Humidity", "Condition", "Score"), show="headings")
+        for col in tree["columns"]:
+            tree.heading(col, text=col)
+            tree.column(col, width=120)
+        tree.pack(fill="both", expand=True)
+
+        for row in results:
+            tree.insert("", "end", values=row)
 
 def main():
     root = tk.Tk()
