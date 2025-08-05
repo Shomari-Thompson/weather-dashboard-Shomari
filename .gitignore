@@ -7,3 +7,5 @@ __pycache__/
 
 # Optional: ignore SQLite or data files
 *.db
+
+settings.json
